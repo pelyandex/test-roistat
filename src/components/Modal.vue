@@ -20,7 +20,7 @@
         type='number'
       ></b-input>
     </div>
-    <div v-if='items.length !== 0'>
+    <div v-if='items.length > 0'>
       <span>Отвественное лицо</span>
       <b-form-select
         v-model='parent'
@@ -56,7 +56,7 @@ export default {
   }),
   methods: {
     addWorker () {
-      const mapWorkersIds = this.items.length ? this.items.map(el => el.id) : [0]
+      const mapWorkersIds = this.items.length === 0 ? [0] : this.items.map(el => el.id)
       const maxId = Math.max(...mapWorkersIds)
       const model = {
         name: this.name,

@@ -2,17 +2,17 @@
   <div class='main'>
     <div
       class='table'
-      v-if='treeItems.length !== 0'
+      v-if='treeItems.length > 0'
     >
       <div class='table-head'>
         <span
-          class='table-head__item'
+          class='table-head__item pointer align-center'
           @click='changeSort("name")'
         >
           Имя
         </span>
         <span
-          class='table-head__item'
+          class='table-head__item pointer align-center'
           @click='changeSort("phone")'
         >
           Телефон
@@ -38,7 +38,7 @@
         Добавить
       </b-button>
       <b-button
-        v-if='treeItems.length !== 0'
+        v-if='treeItems.length > 0'
         class='button'
         variant='danger'
         @click='deleteAll'
@@ -107,6 +107,7 @@ export default {
       this.items.push(persona)
     },
     changeCallback (value) {
+      // Чтобы избавиться от лишнего ререндера можно написать алгоритм слияния, либо обход дерева с модификацией узла.
       this.items = value
     }
   }
@@ -141,8 +142,6 @@ export default {
     border-bottom: 1px solid silver;
     &__item {
       width: 50%;
-      text-align: center;
-      cursor: pointer;
     }
   }
 }

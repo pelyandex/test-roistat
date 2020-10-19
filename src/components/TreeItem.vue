@@ -7,11 +7,11 @@
       <div class='table-head table-row'>
         <div
           :style='shift(node)'
-          class='tree-item table-head__item'
+          class='tree-item table-head__item align-left'
         >
           <span
             @click='reShow(node)'
-            v-if='node.node.length !== 0'
+            v-if='node.node.length > 0'
             class='arrow'
           >
             {{ node.show ? '&uarr;' : '&darr;'  }}
@@ -20,10 +20,10 @@
             {{node.name}}
           </span>
         </div>
-        <div class='table-head__item'>{{node.phone}}</div>
+        <div class='tree-item table-head__item align-center'>{{node.phone}}</div>
       </div>
       <TreeItem
-        v-if='node.node.length !== 0'
+        v-if='node.node.length > 0'
         v-show='node.show'
         :req='req + 10 || 10'
         :tree-items='node.node'
@@ -80,12 +80,10 @@ export default {
 
 <style scoped>
   .tree-item {
-    text-align: left;
     position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: auto;
   }
   .table-row {
     border-bottom: 1px solid silver;
