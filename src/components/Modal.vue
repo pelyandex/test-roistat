@@ -20,7 +20,7 @@
         type='number'
       ></b-input>
     </div>
-    <div v-if='items.length > 0'>
+    <div>
       <span>Отвественное лицо</span>
       <b-form-select
         v-model='parent'
@@ -66,18 +66,18 @@ export default {
         show: false,
         node: []
       }
+      this.closeModal()
       this.$emit('addPerson', model)
-      this.$nextTick(() => this.setItems())
     },
     setItems () {
       const mapWorkersOptions = this.items.map(item => ({ value: item.id, text: item.name }))
       mapWorkersOptions.push({ text: 'Без ответственного', value: null })
       this.selectOptions = mapWorkersOptions
+      this.parent = null
     },
     clearForm () {
       this.name = ''
       this.phone = ''
-      this.parent = null
     },
     closeModal () {
       this.clearForm()
